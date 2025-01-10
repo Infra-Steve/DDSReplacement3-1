@@ -4,20 +4,24 @@
 @inject DialogService dialogService
 
 
-<RadzenRow Style="width: 858px; height: 56px; position: relative">
-    <RadzenText TextStyle="TextStyle.Subtitle2" Style="margin-left: 32px; padding-top: 10px;" TagName="TagName.H3">Prepared By</RadzenText>
-    <RadzenTextBox @bind-Value=PreparerName Change="OnNameTextChange" Style="width: 55; padding-top: 1px; margin-left: 2px; padding-left: 5px; position: relative" Name="InsertedText" aria-label="TextBox with placeholder" />
+<RadzenRow Style="width: 692px; height: 200px; position: relative">
+   
+    
+ <RadzenColumn class="white" Style="width: 100px; height: 200px; display: inline-grid">
+        <RadzenText TextStyle="TextStyle.Subtitle2" Style="margin-left: 32px; padding-top: 10px; width: 129px" TagName="TagName.H3">Prepared By</RadzenText>
+        <RadzenText TextStyle="TextStyle.Subtitle2" Style="margin-left: 32px; padding-top: 10px; width: 156px" TagName="TagName.H3">Job Description</RadzenText>
+ </RadzenColumn>
+
+ <RadzenColumn class="white" Style="width: 100px; height: 200px; display: inline-grid">
+        <RadzenTextBox @bind-Value=PrepPhone Change="OnPhoneTextChange" Placeholder="Search..." Style="width: 200px; padding-top: 1px; margin-left: 2px; padding-left: 5px; position: relative" Name="InsertedText" aria-label="TextBox with placeholder" />
+        <RadzenTextBox @bind-Value=JobDescription Change="OnNameTextChange" Style="width: 200px; padding-top: 1px; margin-left: 2px; padding-left: 5px; position: relative" Name="InsertedText" aria-label="TextBox with placeholder" />
+ </RadzenColumn>
 
     <RadzenText TextStyle="TextStyle.Subtitle2" Style="margin-left: 32px; padding-top: 10px;" TagName="TagName.H3">Phone</RadzenText>
     <RadzenTextBox @bind-Value=PrepPhone Change="OnPhoneTextChange" Placeholder="Search..." Style="width: 55; padding-top: 1px; margin-left: 2px; padding-left: 5px; position: relative" Name="InsertedText" aria-label="TextBox with placeholder" />
 
-</RadzenRow>
 
-<RadzenRow Style="width: 500px; height: 56px; position: relative">
-    <RadzenText TextStyle="TextStyle.Subtitle2" Style="margin-left: 32px; padding-top: 10px;" TagName="TagName.H3">Job Description</RadzenText>
-    <RadzenTextBox @bind-Value=JobDescription Change="OnNameTextChange" Style="width: 55; padding-top: 1px; margin-left: 2px; padding-left: 5px; position: relative" Name="InsertedText" aria-label="TextBox with placeholder" />
 </RadzenRow>
-
 
 
 <RadzenRow Style="width: 950px; height: 400px; position: relative">
@@ -34,16 +38,18 @@
     </RadzenColumn>
 
     <RadzenColumn class="black" Style="width: 213px; height: 376px; float: left; display: inline-grid">
-        <RadzenTextBox @bind-Value=Date Change="OnNameTextChange" Style="width: 8; padding-top: 1px; margin-left: 25px; padding-left: 1px; position: relative" Name="Date" aria-label="TextBox with placeholder" />
-        <RadzenTextBox @bind-Value=LineNumber Change="OnNameTextChange" Style="width: 55; padding-top: 1px; margin-left: 25px; padding-left: 5px; position: static" Name="LineNumber" aria-label="TextBox with placeholder" />
-        <RadzenTextBox @bind-Value=Location Change="OnNameTextChange" Style="width: 55; padding-top: 1px; margin-left: 25px; padding-left: 5px; position: relative" Name="Location" aria-label="TextBox with placeholder" />
-        <RadzenTextBox @bind-Value=AtlasSheet Change="OnNameTextChange" Style="width: 55; padding-top: 1px; margin-left: 25px; padding-left: 5px; position: relative" Name="AtlasSheet" aria-label="TextBox with placeholder" />
-        <RadzenTextBox @bind-Value=TH_Guide Change="OnNameTextChange" Style="width: 55; padding-top: 1px; margin-left: 25px; padding-left: 5px; position: relative" Name="InsertedText" aria-label="TextBox with placeholder" />
+        <RadzenTextBox @bind-Value=Date Change="OnNameTextChange" Style="width: 200px; padding-top: 1px; margin-left: 25px; padding-left: 1px; position: relative" Name="Date" aria-label="TextBox with placeholder" />
+        <RadzenTextBox @bind-Value=LineNumber Change="OnNameTextChange" Style="width: 200px; padding-top: 1px; margin-left: 25px; padding-left: 5px; position: static" Name="LineNumber" aria-label="TextBox with placeholder" />
+        <RadzenTextBox @bind-Value=Location Change="OnNameTextChange" Style="width: 200px; padding-top: 1px; margin-left: 25px; padding-left: 5px; position: relative" Name="Location" aria-label="TextBox with placeholder" />
+        <RadzenTextBox @bind-Value=AtlasSheet Change="OnNameTextChange" Style="width: 200px; padding-top: 1px; margin-left: 25px; padding-left: 5px; position: relative" Name="AtlasSheet" aria-label="TextBox with placeholder" />
+        <RadzenTextBox @bind-Value=TH_Guide Change="OnNameTextChange" Style="width: 200px; padding-top: 1px; margin-left: 25px; padding-left: 5px; position: relative" Name="InsertedText" aria-label="TextBox with placeholder" />
+       
         <RadzenDropDown TValue="string" Value=@value Data=@customers Change="@(args => value = $"{args}")" Style="width: 100%; max-width: 400px;" Name="Region" />
         <RadzenDropDown TValue="string" Value=@value Data=@customers Change="@(args => value = $"{args}")" Style="width: 100%; max-width: 400px;" Name="District" />
         <RadzenDropDown TValue="string" Value=@value Data=@customers Change="@(args => value = $"{args}")" Style="width: 100%; max-width: 400px;" Name="City" />
-    </RadzenColumn>
-    <RadzenColumn class="black" Style="width: 50px; height: 313px; border: 3px solid #424242">
+   
+        </RadzenColumn>
+    <RadzenColumn class="black" Style="width: 68px; height: 313px; border: 1px solid #424242">
     </RadzenColumn>
 
     <RadzenColumn class="white" Style="width: 800px; height: 313px">
@@ -76,14 +82,14 @@
     <RadzenButton Text="Tap Application" Style="background-color: #ecf2f4; color: #161616; width: 170px; right: 0px; bottom: 0px; left: 5px; float: none; margin: 10px; border: 0px none #181616; text-align: left; font-size: 12px; text-decoration: none"></RadzenButton>
 </RadzenColumn>
 </RadzenRow>
- <RadzenRow Style="width: 700px; height: 56px; position: relative">
-     <RadzenColumn class="white" Style="width: 800px; height: 313px">
+ <RadzenRow Style="width: 943px; height: 96px; position: relative">
+     <RadzenColumn class="white" Style="width: 800px; height: 96px">
         <RadzenCheckBox TValue="bool"></RadzenCheckBox>
         <RadzenLabel Text="Approve this Design Data sheet" class="rz-ms-2" />
         <RadzenButton Text="Change" Style="background-color: #ecf2f4; color: lightgrey; left: 5px; margin: 10px; vertical-align: baseline"></RadzenButton>
      </RadzenColumn>
     
-    <RadzenColumn class="white" Style="width: 800px; height: 313px">
+    <RadzenColumn class="white" Style="width: 800px; height: 90px">
        <RadzenLabel Text="User Comments" class="rz-ms-2" />
        <RadzenTextBox Style="width: 450px; padding-top: 1px; margin-left: 25px; padding-left: 1px; position: relative" Name="Date" aria-label="text" />
     </RadzenColumn>
