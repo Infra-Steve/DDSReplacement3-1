@@ -1,0 +1,29 @@
+@page "/dialogcomponent/{MainText}"
+@using Microsoft.EntityFrameworkCore
+@using Radzen.Blazor
+
+
+@inject Radzen.DialogService dialogService
+
+<PageTitle>DialogComponent</PageTitle>
+<RadzenRow Style="width: 484px">
+
+    <RadzenTextBox @bind-Value=TextValue  Placeholder="Search..." Style="width: 100%" aria-label="TextBox with placeholder" />
+    <RadzenButton Click="@((args) => dialogService.Close(TextValue))" Variant="Variant.Flat" Text="Close" Style="width: 120px" />
+   
+
+ 
+</RadzenRow>
+@code{
+    [Parameter] public string MainText { get; set; }
+
+    public string TextValue { get; set; }
+    
+
+  void OnChangeText(string value, string name)
+   {
+      //console.Log($"{name} value changed to {value}");
+      TextValue = TextValue + value.ToString();
+
+   }
+}

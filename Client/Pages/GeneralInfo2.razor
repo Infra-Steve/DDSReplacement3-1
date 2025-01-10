@@ -1,0 +1,144 @@
+@page "/"
+
+@using System.Text.Json
+@inject DialogService dialogService
+
+
+<RadzenRow Style="width: 858px; height: 56px; position: relative">
+    <RadzenText TextStyle="TextStyle.Subtitle2" Style="margin-left: 32px; padding-top: 10px;" TagName="TagName.H3">Prepared By</RadzenText>
+    <RadzenTextBox @bind-Value=PreparerName Change="OnNameTextChange" Style="width: 55; padding-top: 1px; margin-left: 2px; padding-left: 5px; position: relative" Name="InsertedText" aria-label="TextBox with placeholder" />
+
+    <RadzenText TextStyle="TextStyle.Subtitle2" Style="margin-left: 32px; padding-top: 10px;" TagName="TagName.H3">Phone</RadzenText>
+    <RadzenTextBox @bind-Value=PrepPhone Change="OnPhoneTextChange" Placeholder="Search..." Style="width: 55; padding-top: 1px; margin-left: 2px; padding-left: 5px; position: relative" Name="InsertedText" aria-label="TextBox with placeholder" />
+
+</RadzenRow>
+
+<RadzenRow Style="width: 500px; height: 56px; position: relative">
+    <RadzenText TextStyle="TextStyle.Subtitle2" Style="margin-left: 32px; padding-top: 10px;" TagName="TagName.H3">Job Description</RadzenText>
+    <RadzenTextBox @bind-Value=JobDescription Change="OnNameTextChange" Style="width: 55; padding-top: 1px; margin-left: 2px; padding-left: 5px; position: relative" Name="InsertedText" aria-label="TextBox with placeholder" />
+</RadzenRow>
+
+
+
+<RadzenRow Style="width: 950px; height: 400px; position: relative">
+
+    <RadzenColumn class="white" Style="width: 450px; height: 375px; display: inline-grid">
+        <RadzenText TextStyle="TextStyle.Subtitle2" Style="margin-left: 32px; padding-top: 10px;" TagName="TagName.H3">Date</RadzenText>
+        <RadzenText TextStyle="TextStyle.Subtitle2" Style="margin-left: 32px; padding-top: 10px;" TagName="TagName.H3">Line Number</RadzenText>
+        <RadzenText TextStyle="TextStyle.Subtitle2" Style="margin-left: 32px; padding-top: 10px;" TagName="TagName.H3">Location</RadzenText>
+        <RadzenText TextStyle="TextStyle.Subtitle2" Style="margin-left: 32px; padding-top: 10px;" TagName="TagName.H3">Atlas Sheet</RadzenText>
+        <RadzenText TextStyle="TextStyle.Subtitle2" Style="margin-left: 32px; padding-top: 10px;" TagName="TagName.H3">Thomas Guide</RadzenText>
+        <RadzenText TextStyle="TextStyle.Subtitle2" Style="margin-left: 32px; padding-top: 10px;" TagName="TagName.H3">Region</RadzenText>
+        <RadzenText TextStyle="TextStyle.Subtitle2" Style="margin-left: 32px; padding-top: 10px;" TagName="TagName.H3">District</RadzenText>
+        <RadzenText TextStyle="TextStyle.Subtitle2" Style="margin-left: 32px; padding-top: 10px;" TagName="TagName.H3">City</RadzenText>
+    </RadzenColumn>
+
+    <RadzenColumn class="black" Style="width: 213px; height: 376px; float: left; display: inline-grid">
+        <RadzenTextBox @bind-Value=Date Change="OnNameTextChange" Style="width: 8; padding-top: 1px; margin-left: 25px; padding-left: 1px; position: relative" Name="Date" aria-label="TextBox with placeholder" />
+        <RadzenTextBox @bind-Value=LineNumber Change="OnNameTextChange" Style="width: 55; padding-top: 1px; margin-left: 25px; padding-left: 5px; position: static" Name="LineNumber" aria-label="TextBox with placeholder" />
+        <RadzenTextBox @bind-Value=Location Change="OnNameTextChange" Style="width: 55; padding-top: 1px; margin-left: 25px; padding-left: 5px; position: relative" Name="Location" aria-label="TextBox with placeholder" />
+        <RadzenTextBox @bind-Value=AtlasSheet Change="OnNameTextChange" Style="width: 55; padding-top: 1px; margin-left: 25px; padding-left: 5px; position: relative" Name="AtlasSheet" aria-label="TextBox with placeholder" />
+        <RadzenTextBox @bind-Value=TH_Guide Change="OnNameTextChange" Style="width: 55; padding-top: 1px; margin-left: 25px; padding-left: 5px; position: relative" Name="InsertedText" aria-label="TextBox with placeholder" />
+        <RadzenDropDown TValue="string" Value=@value Data=@customers Change="@(args => value = $"{args}")" Style="width: 100%; max-width: 400px;" Name="Region" />
+        <RadzenDropDown TValue="string" Value=@value Data=@customers Change="@(args => value = $"{args}")" Style="width: 100%; max-width: 400px;" Name="District" />
+        <RadzenDropDown TValue="string" Value=@value Data=@customers Change="@(args => value = $"{args}")" Style="width: 100%; max-width: 400px;" Name="City" />
+    </RadzenColumn>
+    <RadzenColumn class="black" Style="width: 50px; height: 313px; border: 3px solid #424242">
+    </RadzenColumn>
+
+    <RadzenColumn class="white" Style="width: 800px; height: 313px">
+    work order
+    <RadzenRow Style="width: 400px; height: 56px; position: relative">
+        <RadzenCheckBox TValue="bool"></RadzenCheckBox>
+        <RadzenLabel Text="WR" Component="WR" class="rz-ms-2" />
+        <RadzenCheckBox TValue="bool"></RadzenCheckBox>
+        <RadzenLabel Text="BMO" Component="BWO" class="rz-ms-2" />
+        <RadzenCheckBox TValue="bool"></RadzenCheckBox>
+        <RadzenLabel Text="WOA" Component="WOA" class="rz-ms-2" />
+    </RadzenRow>
+    <RadzenRow Style="width: 300px; height: 56px; position: relative">
+        <RadzenCheckBox TValue="bool"></RadzenCheckBox>
+        <RadzenLabel Text="OMO" Component="OMO" class="rz-ms-2" />
+        <RadzenCheckBox TValue="bool"></RadzenCheckBox>
+        <RadzenLabel Text="MRO" Component="MRO" class="rz-ms-2" />
+        <RadzenCheckBox TValue="bool"></RadzenCheckBox>
+        <RadzenLabel Text="MWO" Component="MWO" class="rz-ms-2" />
+
+    </RadzenRow>
+    <RadzenRow Style="width: 200px; height: 56px; position: relative">
+        <RadzenCheckBox TValue="bool"></RadzenCheckBox>
+        <RadzenLabel Text="Other" Component="Other" class="rz-ms-2" />
+
+    </RadzenRow>
+    <RadzenRow Style="width: 200px; height: 56px; position: relative">
+
+    </RadzenRow>
+    <RadzenButton Text="Tap Application" Style="background-color: #ecf2f4; color: #161616; width: 170px; right: 0px; bottom: 0px; left: 5px; float: none; margin: 10px; border: 0px none #181616; text-align: left; font-size: 12px; text-decoration: none"></RadzenButton>
+</RadzenColumn>
+</RadzenRow>
+ <RadzenRow Style="width: 700px; height: 56px; position: relative">
+     <RadzenColumn class="white" Style="width: 800px; height: 313px">
+        <RadzenCheckBox TValue="bool"></RadzenCheckBox>
+        <RadzenLabel Text="Approve this Design Data sheet" class="rz-ms-2" />
+        <RadzenButton Text="Change" Style="background-color: #ecf2f4; color: lightgrey; left: 5px; margin: 10px; vertical-align: baseline"></RadzenButton>
+     </RadzenColumn>
+    
+    <RadzenColumn class="white" Style="width: 800px; height: 313px">
+       <RadzenLabel Text="User Comments" class="rz-ms-2" />
+       <RadzenTextBox Style="width: 450px; padding-top: 1px; margin-left: 25px; padding-left: 1px; position: relative" Name="Date" aria-label="text" />
+    </RadzenColumn>
+ </RadzenRow>
+
+
+
+
+
+
+
+@code {
+
+    //bind values
+    private string TextValue { get; set; }
+    private string PreparerName { get; set; }
+    private string PrepPhone { get; set; }
+    private string JobDescription { get; set; }
+    private string Date { get; set; }
+    private string LineNumber { get; set; }
+    private string Location { get; set; }
+    private string AtlasSheet { get; set; }
+    private string TH_Guide { get; set; }
+    private string Region { get; set; }
+    private string District { get; set; }
+    private string City { get; set; }
+    string value = "Around the Horn";
+    IEnumerable<string> customers;
+
+
+
+
+    private string MainText { get; set; } = "This is my text";
+    private string MainNewText { get; set; } = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        IEnumerable<string> customers = new List<string>() { "Steve", "Mark", "Jayant" };
+    }
+
+    void OnChangeText(string value, string name)
+    {
+        //console.Log($"{name} value changed to {value}");
+        //  htmlValue = htmlValue + value.ToString();
+
+    }
+    public void OnNameTextChange()
+    {
+        // TextValue = MainNewText;
+    }
+    public void OnPhoneTextChange()
+    {
+        // TextValue = MainNewText;
+    }
+}
+

@@ -1,0 +1,244 @@
+@inherits LayoutComponentBase
+@inject CookieThemeService CookieThemeService
+@inject DialogService dialogService
+@inject NotificationService NotifyThis
+@using System.Text.Json
+@using DDSReplacement3.Client.Pages
+
+<RadzenComponents />
+
+<RadzenLayout style="grid-template-areas: 'rz-sidebar rz-header' 'rz-sidebar rz-body';">
+    <RadzenHeader>
+        <RadzenRow JustifyContent="JustifyContent.Start" AlignItems="AlignItems.Center" Gap="0">
+            <RadzenColumn Size="9">
+                <RadzenSidebarToggle Click="@SidebarToggleClick"></RadzenSidebarToggle>
+                
+                <RadzenButton Click=@(args => OnClick("Open"))        Style="background-color: #ecf2f4;  color: #0f0e0e; width: 30px; left: 5px; right: 0px; margin: 10px; vertical-align: baseline" Icon="file_open"></RadzenButton>
+                <RadzenButton Click=@(args => OnClick("Open"))        Style="background-color: #ecf2f4;  color: #0f0e0e; width: 30px; left: 5px; right: 0px; margin: 10px; vertical-align: baseline" Icon="print"></RadzenButton>
+                <RadzenButton Click=@(args => OnClick("Save"))        Style="background-color: #ecf2f4;  color: #0f0e0e; width: 30px; left: 5px; right: 0px; margin: 10px; vertical-align: baseline" Icon="Savefile1"></RadzenButton>
+                <RadzenButton Click=@(args => OnClick("Print Previw")) Style="background-color: #ecf2f4;  color: #0f0e0e; width: 30px; left: 5px; right: 0px; margin: 10px; vertical-align: baseline" Icon="file_open"></RadzenButton>
+                <RadzenButton Click=@(args => OnClick("Copy"))        Style="background-color: #ecf2f4;  color: #0f0e0e; width: 30px; left: 5px; right: 0px; margin: 10px; vertical-align: baseline" Icon="file_open"></RadzenButton>
+                <RadzenButton Click=@(args => OnClick("Paste"))       Style="background-color: #ecf2f4;  color: #0f0e0e; width: 30px; left: 5px; right: 0px; margin: 10px; vertical-align: baseline" Icon="file_open"></RadzenButton>
+                <RadzenButton Click=@(args => OnClick("Send"))        Style="background-color: #ecf2f4;  color: #0f0e0e; width: 30px; left: 5px; right: 0px; margin: 10px; vertical-align: baseline" Icon="file_open"></RadzenButton>
+                <RadzenButton Click=@(args => OnClick("BOM"))         Style="background-color: #ecf2f4;  color: #0f0e0e; width: 30px; left: 5px; right: 0px; margin: 10px; vertical-align: baseline" Icon="file_open"></RadzenButton>
+                <RadzenButton Click=@(args => OnClick("3DBOM"))       Style="background-color: #ecf2f4;  color: #0f0e0e; width: 30px; left: 5px; right: 0px; margin: 10px; vertical-align: baseline" Icon="file_open"></RadzenButton>
+            </RadzenColumn>
+           
+            <RadzenColumn Size="7">
+                <RadzenStack AlignItems="AlignItems.Center" Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.End" Gap="0.5rem" class="rz-px-2">
+                    <RadzenAppearanceToggle />
+                </RadzenStack>
+            </RadzenColumn>
+
+        </RadzenRow>
+    </RadzenHeader>
+    <RadzenBody Expanded="@sidebarExpanded">
+        <RadzenRow class="rz-mx-auto rz-px-4 rz-pt-2 rz-pt-md-4 rz-pt-lg-6 rz-pt-xl-12 rz-pb-2 rz-pb-lg-12" Style="max-width: 1440px;">
+            <RadzenColumn Size="12">
+            @Body
+            </RadzenColumn>
+        </RadzenRow>
+
+        <RadzenFooter>
+           <RadzenRow JustifyContent="JustifyContent.Start" AlignItems="AlignItems.Start" Gap="8" >
+            <RadzenText Text="Ready" TextStyle="Radzen.Blazor.TextStyle.Caption" TagName="Radzen.Blazor.TagName.P" TextAlign="Radzen.TextAlign.Center" />
+            <RadzenText Text="-------" TextStyle="Radzen.Blazor.TextStyle.Caption" TagName="Radzen.Blazor.TagName.P" TextAlign="Radzen.TextAlign.Center" />
+            <RadzenText Text="Version 1.99" TextStyle="Radzen.Blazor.TextStyle.Caption" TagName="Radzen.Blazor.TagName.P" TextAlign="Radzen.TextAlign.Center" />
+            <RadzenText Text="Status" TextStyle="Radzen.Blazor.TextStyle.Caption" TagName="Radzen.Blazor.TagName.P" TextAlign="Radzen.TextAlign.Center" />
+            <RadzenText Text="VALID" TextStyle="Radzen.Blazor.TextStyle.Caption" class="rz-mb-0" TagName="Radzen.Blazor.TagName.P" TextAlign="Radzen.TextAlign.Center" />
+            <RadzenText Text="Mode:" TextStyle="Radzen.Blazor.TextStyle.Caption" TagName="Radzen.Blazor.TagName.P" TextAlign="Radzen.TextAlign.Center" />
+            <RadzenText Text="DISTRIBUTION" TextStyle="Radzen.Blazor.TextStyle.Caption" class="rz-mb-0" TagName="Radzen.Blazor.TagName.P" TextAlign="Radzen.TextAlign.Center" />
+            </RadzenRow>
+        </RadzenFooter>
+    </RadzenBody>
+
+
+
+    <RadzenSidebar @bind-Expanded="@sidebarExpanded" style="z-index: 2">
+        <RadzenStack AlignItems="Radzen.AlignItems.Center" class="rz-py-4 rz-py-lg-6" Style="padding: var(--rz-panel-menu-item-padding); border-bottom: var(--rz-panel-menu-item-border);">
+            <RadzenImage Path="images/brand.gif"  style="width: 100px; height: 75px" AlternateText="Application logo"></RadzenImage>
+            <RadzenText Text="DDS_Replacement_3" TextStyle="Radzen.Blazor.TextStyle.Subtitle1" class="rz-mb-0" style="color: var(--rz-sidebar-color);" />
+        </RadzenStack>
+        <RadzenPanelMenu>
+            <RadzenPanelMenuItem Text="General Info_2" Path="/" />
+            <RadzenPanelMenuItem Text="Home" Path="index" />         
+        </RadzenPanelMenu>
+        <RadzenStack AlignItems="Radzen.AlignItems.Center" Gap="0" class="rz-py-4 rz-py-lg-6" Style="padding: var(--rz-panel-menu-item-padding);">
+            <RadzenText Text="DDS_Replacement_3 v1.0.0" TextStyle="Radzen.Blazor.TextStyle.Caption" TagName="Radzen.Blazor.TagName.P" TextAlign="Radzen.TextAlign.Center" />
+            <RadzenText Text="Copyright Ⓒ 2025" TextStyle="Radzen.Blazor.TextStyle.Caption" class="rz-mb-0" TagName="Radzen.Blazor.TagName.P" TextAlign="Radzen.TextAlign.Center" />
+        </RadzenStack>
+
+
+
+    </RadzenSidebar>
+
+</RadzenLayout>
+
+@code{
+    
+    int orderID = 10248;
+
+    string TextValue { get; set; }
+    string InsertedTextValue { get; set; }
+    private void onSpecialTextBoxChange()
+    {
+        // TextValue = MainNewText;
+    }
+
+
+    private string MainText { get; set; } = "This is my text";
+    private string MainNewText { get; set; } = string.Empty;
+
+    async Task BtnNew(string choice)
+    {
+
+    }
+
+    async Task ButtonEvent(MouseEventArgs args, int CustomParameter)
+    {
+
+    }
+
+    async Task OpenComments5()
+    {
+        await LoadStateAsync();
+        var result = await dialogService.OpenAsync<DialogComponent>("Text Here", new Dictionary<string, object>() { { "MainText", MainText } });
+
+        if (result != null)
+        {
+            //MainNewText = result;
+            InsertedTextValue = result;
+            // onSpecialTextBoxChange(); // seems a bit sloppy
+        }
+        await SaveStateAsync();
+    }
+
+
+    void OnDrag(System.Drawing.Point point)
+    {
+        JSRuntime.InvokeVoidAsync("eval", $"console.log('Dialog drag. Left:{point.X}, Top:{point.Y}')");
+
+        if (Settings == null)
+        {
+            Settings = new DialogSettings();
+
+        }
+
+        Settings.Left = $"{point.X}px";
+        Settings.Top = $"{point.Y}px";
+
+        InvokeAsync(SaveStateAsync);
+    }
+
+    void OnResize(System.Drawing.Size size)
+    {
+        JSRuntime.InvokeVoidAsync("eval", $"console.log('Dialog resize. Width:{size.Width}, Height:{size.Height}')");
+
+        if (Settings == null)
+        {
+            Settings = new DialogSettings();
+        }
+
+        Settings.Width = $"{size.Width}px";
+        Settings.Height = $"{size.Height}px";
+
+        InvokeAsync(SaveStateAsync);
+    }
+
+    DialogSettings _settings;
+    public DialogSettings Settings
+    {
+        get
+        {
+            return _settings;
+        }
+        set
+        {
+            if (_settings != value)
+            {
+                _settings = value;
+                InvokeAsync(SaveStateAsync);
+            }
+        }
+    }
+
+    private async Task LoadStateAsync()
+    {
+        await Task.CompletedTask;
+
+        var result = await JSRuntime.InvokeAsync<string>("window.localStorage.getItem", "DialogSettings");
+        if (!string.IsNullOrEmpty(result))
+        {
+            _settings = JsonSerializer.Deserialize<DialogSettings>(result);
+        }
+    }
+
+    private async Task SaveStateAsync()
+    {
+        await Task.CompletedTask;
+
+        await JSRuntime.InvokeVoidAsync("window.localStorage.setItem", "DialogSettings", JsonSerializer.Serialize<DialogSettings>(Settings));
+    }
+
+    public class DialogSettings
+    {
+        public string Left { get; set; }
+        public string Top { get; set; }
+        public string Width { get; set; }
+        public string Height { get; set; }
+    }
+
+    string htmlValue = @"<h2 style=""text-align:center"">Southern California Gas Company</h2>
+    <img alt=""The Gas Company"" src=""brand.gif"" width=""300"">
+    </div>
+    <div style=""text-align:center"">
+
+    </div>";
+    string value;
+
+    private void OnClick(string text)
+    {
+        NotifyThis.Notify(new NotificationMessage { Severity = NotificationSeverity.Info, Summary = "Button Clicked", Detail = text });
+
+    }
+    void OnChange(string html)
+    {
+        // console.Log($"Change: {html}");
+    }
+
+    void OnChangeText(string value, string name)
+    {
+        //console.Log($"{name} value changed to {value}");
+        htmlValue = htmlValue + value.ToString();
+
+    }
+
+
+    void OnPaste(HtmlEditorPasteEventArgs args)
+    {
+        //  console.Log($"Paste: {args.Html}");
+    }
+
+
+    void OnInput(string html)
+    {
+        // console.Log($"Input: {html}");
+    }
+    void OnInputText(string html)
+    {
+        // console.Log($"Input: {html}");
+    }
+
+    void OnExecute(HtmlEditorExecuteEventArgs args)
+    {
+        // console.Log($"Execute: {args.CommandName}");
+    }
+
+    void OnUploadComplete(UploadCompleteEventArgs args)
+    {
+        //  console.Log($"Upload complete: {args.RawResponse}");
+    }
+
+
+
+}
