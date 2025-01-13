@@ -10,7 +10,7 @@
 <RadzenLayout style="grid-template-areas: 'rz-sidebar rz-header' 'rz-sidebar rz-body';">
     <RadzenHeader>
         <RadzenRow JustifyContent="JustifyContent.Start" AlignItems="AlignItems.Center" Gap="0">
-            <RadzenColumn Size="9">
+            <RadzenColumn Size="9" Style="width: 818px; height: 60px">
                 <RadzenSidebarToggle Click="@SidebarToggleClick"></RadzenSidebarToggle>
                 
                 <RadzenButton Click=@(args => OnClick("Open"))        Style="background-color: #ecf2f4;  color: #0f0e0e; width: 30px; left: 5px; right: 0px; margin: 10px; vertical-align: baseline" Icon="file_open"></RadzenButton>
@@ -22,11 +22,11 @@
                 <RadzenButton Click=@(args => OnClick("Send"))        Style="background-color: #ecf2f4;  color: #0f0e0e; width: 30px; left: 5px; right: 0px; margin: 10px; vertical-align: baseline" Icon="file_open"></RadzenButton>
                 <RadzenButton Click=@(args => OnClick("BOM"))         Style="background-color: #ecf2f4;  color: #0f0e0e; width: 30px; left: 5px; right: 0px; margin: 10px; vertical-align: baseline" Icon="file_open"></RadzenButton>
                 <RadzenButton Click=@(args => OnClick("3DBOM"))       Style="background-color: #ecf2f4;  color: #0f0e0e; width: 30px; left: 5px; right: 0px; margin: 10px; vertical-align: baseline" Icon="file_open"></RadzenButton>
-            </RadzenColumn>
-           
+                <RadzenAppearanceToggle />
+            </RadzenColumn>         
             <RadzenColumn Size="7">
                 <RadzenStack AlignItems="AlignItems.Center" Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.End" Gap="0.5rem" class="rz-px-2">
-                    <RadzenAppearanceToggle />
+                  <!--  <RadzenAppearanceToggle /> -->
                 </RadzenStack>
             </RadzenColumn>
 

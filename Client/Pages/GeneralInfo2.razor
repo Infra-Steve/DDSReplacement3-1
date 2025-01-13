@@ -38,18 +38,18 @@
     </RadzenColumn>
 
     <RadzenColumn class="black" Style="width: 213px; height: 376px; float: left; display: inline-grid">
-        <RadzenTextBox @bind-Value=Date Change="OnNameTextChange" Style="width: 200px; padding-top: 1px; margin-left: 25px; padding-left: 1px; position: relative" Name="Date" aria-label="TextBox with placeholder" />
-        <RadzenTextBox @bind-Value=LineNumber Change="OnNameTextChange" Style="width: 200px; padding-top: 1px; margin-left: 25px; padding-left: 5px; position: static" Name="LineNumber" aria-label="TextBox with placeholder" />
-        <RadzenTextBox @bind-Value=Location Change="OnNameTextChange" Style="width: 200px; padding-top: 1px; margin-left: 25px; padding-left: 5px; position: relative" Name="Location" aria-label="TextBox with placeholder" />
+        <RadzenTextBox @bind-Value=Date       Change="OnNameTextChange" Style="width: 200px; padding-top: 1px; margin-left: 25px; padding-left: 1px; position: relative" Name="Date" aria-label="TextBox with placeholder" />
+        <RadzenTextBox @bind-Value=LineNumber Change="OnNameTextChange" Style="width: 200px; padding-top: 1px; margin-left: 25px; padding-left: 5px; position: static"   Name="LineNumber" aria-label="TextBox with placeholder" />
+        <RadzenTextBox @bind-Value=Location   Change="OnNameTextChange" Style="width: 200px; padding-top: 1px; margin-left: 25px; padding-left: 5px; position: relative" Name="Location" aria-label="TextBox with placeholder" />
         <RadzenTextBox @bind-Value=AtlasSheet Change="OnNameTextChange" Style="width: 200px; padding-top: 1px; margin-left: 25px; padding-left: 5px; position: relative" Name="AtlasSheet" aria-label="TextBox with placeholder" />
-        <RadzenTextBox @bind-Value=TH_Guide Change="OnNameTextChange" Style="width: 200px; padding-top: 1px; margin-left: 25px; padding-left: 5px; position: relative" Name="InsertedText" aria-label="TextBox with placeholder" />
+        <RadzenTextBox @bind-Value=TH_Guide   Change="OnNameTextChange" Style="width: 200px; padding-top: 1px; margin-left: 25px; padding-left: 5px; position: relative" Name="InsertedText" aria-label="TextBox with placeholder" />
        
-        <RadzenDropDown TValue="string" Value=@value Data=@customers Change="@(args => value = $"{args}")" Style="width: 100%; max-width: 400px;" Name="Region" />
-        <RadzenDropDown TValue="string" Value=@value Data=@customers Change="@(args => value = $"{args}")" Style="width: 100%; max-width: 400px;" Name="District" />
-        <RadzenDropDown TValue="string" Value=@value Data=@customers Change="@(args => value = $"{args}")" Style="width: 100%; max-width: 400px;" Name="City" />
+        <RadzenDropDown TValue="string"  Data="Regions"   Change="@(args => value = $"{args}")" Style="width: 100%; max-width: 400px;"   Name="Region" />
+        <RadzenDropDown TValue="string"  Data="Districts" Change="@(args => value = $"{args}")" Style="width: 100%; max-width: 400px;"   Name="District" />
+        <RadzenDropDown TValue="string"  Data="Cities"    Change="@(args => value = $"{args}")" Style="width: 100%; max-width: 400px;"   Name="City" />
    
         </RadzenColumn>
-    <RadzenColumn class="black" Style="width: 68px; height: 313px; border: 1px solid #424242">
+    <RadzenColumn class="black" Style="width: 40px; height: 313px; border: 1px solid #424242; max-width: 75px; min-width: 10px">
     </RadzenColumn>
 
     <RadzenColumn class="white" Style="width: 800px; height: 313px">
@@ -116,7 +116,7 @@
     private string Region { get; set; }
     private string District { get; set; }
     private string City { get; set; }
-    string value = "Around the Horn";
+    string value = "Value";
     IEnumerable<string> customers;
 
 
@@ -124,12 +124,28 @@
 
     private string MainText { get; set; } = "This is my text";
     private string MainNewText { get; set; } = string.Empty;
+    List<object> Regions = new List<object>();
+    List<object> Districts = new List<object>();
+    List<object> Cities = new List<object>();
 
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
 
-        IEnumerable<string> customers = new List<string>() { "Steve", "Mark", "Jayant" };
+     
+    }
+    protected override void OnInitialized()
+    {
+        Regions.Add("North");
+        Regions.Add("South");
+        Regions.Add("Orange");
+        Districts.Add("Taft");
+        Districts.Add("PDR");
+        Districts.Add("Hawthorn");
+        Cities.Add("Los Angeles");
+        Cities.Add("Taft");
+        Cities.Add("Malibu");
+
     }
 
     void OnChangeText(string value, string name)
@@ -146,5 +162,9 @@
     {
         // TextValue = MainNewText;
     }
+
+    
+   
+
 }
 
