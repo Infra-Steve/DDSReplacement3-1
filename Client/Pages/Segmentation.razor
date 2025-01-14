@@ -1,0 +1,86 @@
+@page "/segmentation"
+@using System.Text.Json
+@inject DialogService dialogService
+@using Microsoft.EntityFrameworkCore
+@using Radzen.Blazor
+
+<PageTitle>Segmentation</PageTitle>
+<RadzenRow Style="width: 955px; max-width: 995px; min-width: 400px">
+    <RadzenColumn Style="width: 124px; max-width: 124px">
+        <RadzenColumn Style="min-height: 75px; width: 100px; max-width: 100px">
+        <RadzenLabel Text="*Design Level" Style="margin-bottom: 5px; width: 97px; height: 26px" />
+
+        <RadzenLabel Text="*MAOP" Style="padding-top: 1px; padding-bottom: 3px" />
+        </RadzenColumn>
+    </RadzenColumn>
+     <RadzenColumn Style="width: 124px; max-width: 124px">
+        <RadzenNumeric TValue="dynamic" Style="width: 148px; height: 35px"></RadzenNumeric>
+        <RadzenNumeric TValue="dynamic" Style="width: 148px; height: 35px"></RadzenNumeric>
+    </RadzenColumn>
+     <RadzenLabel Text="*Note Choose DL and MOP based on elevation at pipline source (See beloww)" Style="width: 353px; margin-left: 50px" />
+</RadzenRow>
+<RadzenRow>
+</RadzenRow>
+<RadzenRow Style="width: 955px; max-width: 995px; min-width: 400px">
+    <RadzenRadioButtonList @bind-Value=@value TValue="int">
+        <Items>
+            <RadzenRadioButtonListItem Text="Class 1" Value="1" />
+            <RadzenRadioButtonListItem Text="Class 2" Value="2" />
+            <RadzenRadioButtonListItem Text="Class 3" Value="3" />
+            <RadzenRadioButtonListItem Text="Class 4" Value="4" />
+        </Items>
+    </RadzenRadioButtonList>
+
+
+
+<RadzenLabel Text="Overal Segment Design Factor" Style="width: 261px; height: 50px" />
+ <RadzenTextBox @bind-Value=SegmentFactor Change="OnOSDFchange" Style="width: 200px; padding-top: 1px; margin-left: 2px; padding-left: 5px; position: relative" Name="InsertedText" aria-label="TextBox with placeholder" />
+</RadzenRow>
+
+
+<RadzenRow Style="width: 1200px; max-width: 1400px; min-width: 400px">
+     <RadzenColumn Style="width: 124px; max-width: 30px">
+            <RadzenCheckBox TValue="dynamic"></RadzenCheckBox>
+            <RadzenCheckBox TValue="dynamic"></RadzenCheckBox>
+      </RadzenColumn>
+    <RadzenColumn Style="width: 500px; max-width: 500px; max-height: 125px; height: 50px">
+         <RadzenLabel Text="*Design for Anticipation of Change in Location Class" Style="margin-bottom: 5px; width: 97px; height: 26px" />
+         <RadzenLabel Text="*Pipeline Segment is Temporary" Style="padding-top: 1px; padding-bottom: 3px" />
+    </RadzenColumn>
+     <RadzenColumn Style="width: 124px; max-width: 30px">
+            <RadzenCheckBox TValue="dynamic"></RadzenCheckBox>
+            <RadzenCheckBox TValue="dynamic"></RadzenCheckBox>
+      </RadzenColumn>
+    <RadzenColumn Style="width: 900px; max-width: 400px; max-height: 125px">
+      <RadzenLabel Text="Pipeline Segement is Located on a Bridge Crossing" Style="width: 363px; height: 18px; min-width: 363px; padding: 3px; margin-right: 0px" />
+      <RadzenLabel Text="Pipeline Segment is Part of a Fabricated Assembly" Style="margin-bottom: 5px; width: 539px; height: 15px; min-width: 363px; padding: 3px" />
+   
+        
+    </RadzenColumn>
+</RadzenRow>
+
+@code {
+int value = 1;
+//private string SegmentFactor { get; set; }
+string SegmentFactor = "0.60";
+
+protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+     
+    }
+    protected override void OnInitialized()
+    {
+
+    }
+
+    void OnOSDFchange(string value)
+    {
+        //console.Log($"{name} value changed to {value}");
+        //  htmlValue = htmlValue + value.ToString();
+
+    }
+
+
+    }
